@@ -12,14 +12,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Debug - Print Docker Hub Username
-        run: |
-          echo "::debug DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}"
-
-      - name: Debug - Print Docker Hub Token (First 8 chars)
-        run: |
-          echo "::debug DOCKERHUB_TOKEN (partial): ${{ secrets.DOCKERHUB_TOKEN }}..."
-
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -35,4 +27,4 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/password-generator:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/password-generator:${{ github.sha }}
-          no-cache: true  # Adicionei no-cache
+          no-cache: true
